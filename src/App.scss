@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Fauna+One&display=swap');
+* {
+  box-sizing: border-box;
+}
+.main {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+.font1 {
+  font-family: 'Fauna One', serif;
+}
+.font2 {
+  font-family: 'Cinzel', serif;
+}
+.img {
+  background-image: url('./assets/newsletter-bg.jpeg');
+  object-fit: cover;
+}
+
+.animation {
+  transform: translateY(100%);
+  animation: slideSearchWindow 0.5s ease forwards;
+}
+@keyframes slideSearchWindow {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animation1 {
+  transform: translateY(100%);
+  animation: slideSearchWindow1 0.5s ease forwards;
+}
+@keyframes slideSearchWindow1 {
+  0% {
+    transform: translate(100%);
+  }
+  100% {
+    transform: translate(0%);
+  }
+}
