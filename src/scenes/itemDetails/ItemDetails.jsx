@@ -86,6 +86,8 @@ const ItemDetails = () => {
       >
         <Skeleton isLoaded={item} flex={'1 1 50%'}>
           <Image
+            maxW={['100%', '100%']}
+            maxH={['100%', '100%']}
             alt={item?.name}
             src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
             objectFit="cover"

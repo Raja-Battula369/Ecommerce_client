@@ -1,11 +1,13 @@
 import {
   HStack,
+  Skeleton,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
   Text,
+  useColorMode,
   VStack,
 } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
@@ -17,6 +19,8 @@ import Item from '../../components/Item';
 const ShoppingItems = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
+
+  const { colorMode } = useColorMode();
 
   const getItems = async () => {
     try {
@@ -47,7 +51,11 @@ const ShoppingItems = () => {
       <Text fontSize={'xl'}>
         Our Featured <Text as={'b'}>Products</Text>{' '}
       </Text>
-      <Tabs colorScheme={'blackAlpha'} align="center" isLazy>
+      <Tabs
+        colorScheme={colorMode === 'light' ? 'black' : 'white'}
+        align="center"
+        isLazy={true}
+      >
         <TabList sx={{ cursor: 'pointer' }}>
           <Tab as={'b'}>All</Tab>
           <Tab as={'b'}>NEW ARRIVALS</Tab>
@@ -56,43 +64,49 @@ const ShoppingItems = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <HStack
-              maxW={'full'}
-              justifyContent={['center', 'center', 'flex-start']}
-              wrap={'wrap'}
-              p="0.3rem"
-              m="0.4rem"
-            >
-              {items?.map((item) => (
-                <Item item={item} key={`${item.name}-${item.id}`} />
-              ))}
-            </HStack>
+            <Skeleton isLoaded={items}>
+              <HStack
+                maxW={'full'}
+                justifyContent={['center', 'center', 'flex-start']}
+                wrap={'wrap'}
+                p="0.3rem"
+                m="0.4rem"
+              >
+                {items?.map((item) => (
+                  <Item item={item} key={`${item.name}-${item.id}`} />
+                ))}
+              </HStack>
+            </Skeleton>
           </TabPanel>
           <TabPanel>
-            <HStack
-              maxW={'full'}
-              justifyContent={['center', 'center', 'flex-start']}
-              wrap={'wrap'}
-              p="0.3rem"
-              m="0.4rem"
-            >
-              {newArrivalsItems?.map((item) => (
-                <Item item={item} key={`${item.name}-${item.id}`} />
-              ))}
-            </HStack>
+            <Skeleton isLoaded={items}>
+              <HStack
+                maxW={'full'}
+                justifyContent={['center', 'center', 'flex-start']}
+                wrap={'wrap'}
+                p="0.3rem"
+                m="0.4rem"
+              >
+                {newArrivalsItems?.map((item) => (
+                  <Item item={item} key={`${item.name}-${item.id}`} />
+                ))}
+              </HStack>
+            </Skeleton>
           </TabPanel>
           <TabPanel>
-            <HStack
-              maxW={'full'}
-              justifyContent={['center', 'center', 'flex-start']}
-              wrap={'wrap'}
-              p="0.3rem"
-              m="0.4rem"
-            >
-              {bestSellersItems?.map((item) => (
-                <Item item={item} key={`${item.name}-${item.id}`} />
-              ))}
-            </HStack>
+            <Skeleton isLoaded={items}>
+              <HStack
+                maxW={'full'}
+                justifyContent={['center', 'center', 'flex-start']}
+                wrap={'wrap'}
+                p="0.3rem"
+                m="0.4rem"
+              >
+                {bestSellersItems?.map((item) => (
+                  <Item item={item} key={`${item.name}-${item.id}`} />
+                ))}
+              </HStack>
+            </Skeleton>
           </TabPanel>
           <TabPanel>
             <HStack
