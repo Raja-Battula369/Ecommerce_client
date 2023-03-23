@@ -19,7 +19,6 @@ import Item from '../../components/Item';
 const ShoppingItems = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
-
   const { colorMode } = useColorMode();
 
   const getItems = async () => {
@@ -64,7 +63,7 @@ const ShoppingItems = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Skeleton isLoaded={items}>
+            <Skeleton isLoaded={items.length !== 0}>
               <HStack
                 maxW={'full'}
                 justifyContent={['center', 'center', 'flex-start']}
@@ -79,7 +78,7 @@ const ShoppingItems = () => {
             </Skeleton>
           </TabPanel>
           <TabPanel>
-            <Skeleton isLoaded={items}>
+            <Skeleton isLoaded={items.length !== 0}>
               <HStack
                 maxW={'full'}
                 justifyContent={['center', 'center', 'flex-start']}
@@ -94,7 +93,7 @@ const ShoppingItems = () => {
             </Skeleton>
           </TabPanel>
           <TabPanel>
-            <Skeleton isLoaded={items}>
+            <Skeleton isLoaded={items.length !== 0}>
               <HStack
                 maxW={'full'}
                 justifyContent={['center', 'center', 'flex-start']}

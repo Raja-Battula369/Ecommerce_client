@@ -84,7 +84,7 @@ const ItemDetails = () => {
         alignItems="flex-start"
         gap={'2rem'}
       >
-        <Skeleton isLoaded={item} flex={'1 1 50%'}>
+        <Skeleton isLoaded={item !== null} flex={'1 1 50%'}>
           <Image
             maxW={['100%', '100%']}
             maxH={['100%', '100%']}
@@ -169,15 +169,17 @@ const ItemDetails = () => {
       <Text as={'b'} className="font1">
         Related Products
       </Text>
-      <HStack
-        minW="full"
-        wrap={'wrap'}
-        justifyContent={['center', 'center', 'flex-start']}
-      >
-        {items.slice(0, 4).map((item, i) => (
-          <Item item={item} key={`${item.name}-${i}`} />
-        ))}
-      </HStack>
+      <Skeleton isLoaded={items.length !== 0}>
+        <HStack
+          minW="full"
+          wrap={'wrap'}
+          justifyContent={['center', 'center', 'flex-start']}
+        >
+          {items.slice(0, 4).map((item, i) => (
+            <Item item={item} key={`${item.name}-${i}`} />
+          ))}
+        </HStack>
+      </Skeleton>
     </Container>
   );
 };
