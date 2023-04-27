@@ -21,6 +21,7 @@ import {
 } from '../../state/Index';
 import makePayment from '../checkout/makePayment';
 import '../../App.scss';
+import { useNavigate } from 'react-router-dom';
 
 const CartMenu = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ const CartMenu = () => {
   const IsCartOpen = useSelector((state) => state.cart.isCartOpen);
 
   const { colorMode } = useColorMode();
+  const navigate = useNavigate();
+
   const totalPrice = cart.reduce((total, item) => {
     return total + item.count * item.attributes.price;
   }, 0);
@@ -98,13 +101,27 @@ const CartMenu = () => {
                       height={'164px'}
                       title={item?.name}
                       alt={item?.name}
+                      onClick={() => {
+                        dispatch(setIsCartOpen({}));
+                        navigate(`/item/${item.id}`);
+                      }}
+                      sx={{ cursor: 'pointer' }}
                       src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                     />
                   </Skeleton>
                 </Box>
                 <Box flex={'1 1 60%'}>
                   <HStack justifyContent={'space-between'} mb="0.3rem">
-                    <Text as="b" noOfLines={2} title={item.attributes.name}>
+                    <Text
+                      as="b"
+                      noOfLines={2}
+                      title={item.attributes.name}
+                      onClick={() => {
+                        dispatch(setIsCartOpen({}));
+                        navigate(`/item/${item.id}`);
+                      }}
+                      sx={{ cursor: 'pointer' }}
+                    >
                       {item.attributes.name}{' '}
                     </Text>
                     <Icon

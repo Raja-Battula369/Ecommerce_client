@@ -55,7 +55,7 @@ const ShoppingItems = () => {
         align="center"
         isLazy={true}
       >
-        <TabList sx={{ cursor: 'pointer' }}>
+        <TabList sx={{ cursor: 'pointer' }} id="More">
           <Tab as={'b'}>All</Tab>
           <Tab as={'b'}>NEW ARRIVALS</Tab>
           <Tab as={'b'}>BEST SELLERS</Tab>

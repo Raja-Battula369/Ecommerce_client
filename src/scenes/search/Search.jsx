@@ -89,15 +89,12 @@ const Search = () => {
               }}
               sx={{ cursor: 'pointer' }}
             >
-              <Skeleton isLoaded={item}>
-                <Image
-                  src={`${item.attributes.image.data.attributes.formats.medium.url}`}
-                  alt={item.attributes.name}
-                  w="70px"
-                  h="70px"
-                  objectFit={'cover'}
-                />
-              </Skeleton>
+              <Image
+                src={`${item.attributes.image.data.attributes.formats.medium.url}`}
+                alt={item.attributes.name}
+                boxSize="8rem"
+                objectFit={'cover'}
+              />
               <Box>
                 <Text className="font2" noOfLines={1}>
                   {item.attributes.name}

@@ -92,14 +92,16 @@ const MainCarousel = () => {
             <Text fontSize={'2xl'} color={'#bbd4ed'}>
               Summer Sale
             </Text>
-            <Text
-              textDecor={'underline'}
-              as="b"
-              fontSize={'smaller'}
-              color="#227bd4"
-            >
-              Discover More
-            </Text>
+            <a href="#More">
+              <Text
+                textDecor={'underline'}
+                as="b"
+                fontSize={'smaller'}
+                color="#227bd4"
+              >
+                Discover More
+              </Text>
+            </a>
           </Box>
         </Box>
       ))}

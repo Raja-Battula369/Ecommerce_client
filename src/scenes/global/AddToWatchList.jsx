@@ -14,11 +14,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdClose } from 'react-icons/md';
 import { removeFromWatchList, setIsWatchListOpen } from '../../state/Index';
 import '../../App.scss';
+import { useNavigate } from 'react-router-dom';
 const AddToWatchList = () => {
   const dispatch = useDispatch();
   const WatchList = useSelector((state) => state.cart.watchList);
   const IsCartOpen = useSelector((state) => state.cart.isWatchList);
   const { colorMode } = useColorMode();
+  const navigate = useNavigate();
 
   return (
     // layout
@@ -87,12 +89,27 @@ const AddToWatchList = () => {
                       title={item?.name}
                       alt={item?.name}
                       src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                      onClick={() => {
+                        dispatch(setIsWatchListOpen({}));
+                        navigate(`/item/${item.id}`);
+                      }}
+                      sx={{ cursor: 'pointer' }}
                     />
                   </Skeleton>
                 </Box>
                 <Box flex={'1 1 60%'}>
                   <HStack justifyContent={'space-between'} mb="0.3rem">
-                    <Text as="b" noOfLines={2} title={item.attributes.name}>
+                    <Text
+                      as="b"
+                      noOfLines={2}
+                      title={item.attributes.name}
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        dispatch(setIsWatchListOpen({}));
+
+                        navigate(`/item/${item.id}`);
+                      }}
+                    >
                       {item.attributes.name}{' '}
                     </Text>
                     <Icon
