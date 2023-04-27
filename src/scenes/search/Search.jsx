@@ -20,6 +20,7 @@ import '../../App.scss';
 const Search = () => {
   const IsSearchOn = useSelector((state) => state.cart.isSearchOn);
   const [query, setQuery] = useState(null);
+  const [debounceQuery, setDebounceQuery] = useState('');
   const [items, SetItems] = useState([]);
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Search = () => {
     const getSearchData = async () => {
       try {
         const { data } = await axios.get(
-          `https://ecserver1.onrender.com/api/items?populate=*&filters[name][$contains]=${query}`
+          `https://ecserver1.onrender.com/api/items?populate=*&filters[name][$contains]=${debounceQuery}`
         );
         SetItems(data.data);
       } catch (error) {
@@ -36,8 +37,15 @@ const Search = () => {
       }
     };
     getSearchData();
-  }, [query]);
+  }, [debounceQuery]);
 
+  useEffect(() => {
+    let time = setTimeout(() => {
+      setDebounceQuery(query);
+    }, 500);
+    return () => clearTimeout(time);
+  }, [query]);
+  console.log(debounceQuery);
   return (
     <Box
       display={IsSearchOn ? 'block' : 'none'}
